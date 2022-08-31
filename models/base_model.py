@@ -4,6 +4,7 @@
 
 import uuid
 from datetime import datetime
+from models import storage
 
 
 class BaseModel(object):
@@ -29,6 +30,8 @@ class BaseModel(object):
             self.created_at = datetime.now()
         if kwargs is None or kwargs.get('updated_at') is None:
             self.updated_at = datetime.now()
+        if kwargs is None:
+            storage.new(self)
         if kwargs is not None:
             for k, v in kwargs.items():
                 if k == "id":
@@ -61,6 +64,7 @@ class BaseModel(object):
 
         """
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         """ Returns a dictionary of all keys/values

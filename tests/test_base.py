@@ -7,7 +7,9 @@ from models.base_model import BaseModel
 
 
 class TestBase__init__(unittest.TestCase):
-    """ Class to define test cases for public instance method '__init__()' """
+    """ Class to define test cases for public instance
+        method '__init__(*args, **kwargs)'
+    """
 
     @classmethod
     def setUp(self):
@@ -18,7 +20,7 @@ class TestBase__init__(unittest.TestCase):
         self.__str__ = b.__str__
         self.save = b.save
         self.to_dict = b.to_dict
-        print("SetUp Class")
+        print("SetUp Class TestBase__init__")
 
     def test_output_type(self):
         self.assertIsNotNone(BaseModel())
@@ -77,7 +79,7 @@ class TestBase__str__(unittest.TestCase):
         self.__str__ = b.__str__
         self.save = b.save
         self.to_dict = b.to_dict
-        print("SetUp Class")
+        print("SetUp Class TestBase__str__")
 
     def test_output_type(self):
         self.assertIsNotNone(self.__str__())
@@ -117,7 +119,7 @@ class TestBase_Save(unittest.TestCase):
         self.__str__ = b.__str__
         self.save = b.save
         self.to_dict = b.to_dict
-        print("SetUp Class")
+        print("SetUp Class TestBase_Save")
 
     def test_output_type(self):
         self.assertIsNone(self.save())
@@ -150,7 +152,7 @@ class TestBase_To_Dict(unittest.TestCase):
         self.__str__ = b.__str__
         self.save = b.save
         self.to_dict = b.to_dict
-        print("SetUp Class")
+        print("SetUp Class TestBase_To_Dict")
 
     def test_output_type(self):
         self.assertIsInstance(self.to_dict(), dict)
