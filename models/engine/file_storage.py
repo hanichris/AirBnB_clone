@@ -24,7 +24,12 @@ class FileStorage(object):
 
     def all(self):
         """ Returns the dictionary of objects """
-        return self.__objects
+        d = dict()
+        d = self.__objects.copy()
+        if d is not None:
+            for k, v in d.items():
+                d[k] = (d.get('__class__')(v))
+        return d
 
     def new(self, obj):
         """ Adds a new object in dictionary '__objects' """
@@ -39,13 +44,12 @@ class FileStorage(object):
 
     def save(self):
         """ Serializes '__objects' into the JSON file '__file_path' """
-        with open(self.__file_path, mode="a", encoding="UTF8") as f:
-            for item in self.__objects:
-                json.dump(item, f)
+        with open(self.__file_path, mode="w", encoding="UTF-8") as f:
+            json.dump(self.__objects, f, default=str)
 
     def reload(self):
         """ Deserializes the JSON file '__file_path' into '__objects' """
-        d = dict()
+        my_list = list()
         try:
             with open(self.__file_path, mode="r", encoding="UTF-8") as f:
                 self.__objects.update(json.load(f))

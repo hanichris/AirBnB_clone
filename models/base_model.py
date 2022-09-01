@@ -30,9 +30,9 @@ class BaseModel(object):
             self.created_at = datetime.now()
         if kwargs is None or kwargs.get('updated_at') is None:
             self.updated_at = datetime.now()
-        if kwargs is None:
+        if not kwargs:
             storage.new(self)
-        if kwargs is not None:
+        if kwargs and kwargs is not None:
             for k, v in kwargs.items():
                 if k == "id":
                     self.id = str(v)
@@ -72,7 +72,7 @@ class BaseModel(object):
 
         """
         d = dict()
-        d = self.__dict__
+        d = self.__dict__.copy()
         if '__class__' not in d:
             d.update({'__class__': self.__class__.__name__})
             d.update({'created_at': d.get('created_at').isoformat
