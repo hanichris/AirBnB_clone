@@ -3,6 +3,7 @@
 
 import os
 import json
+from models.base_model import BaseModel
 
 
 class FileStorage(object):
@@ -28,7 +29,7 @@ class FileStorage(object):
         d = self.__objects.copy()
         if d is not None:
             for k, v in d.items():
-                d[k] = (d.get('__class__')(v))
+                d[k] = BaseModel(dict(v))
         return d
 
     def new(self, obj):
@@ -49,7 +50,6 @@ class FileStorage(object):
 
     def reload(self):
         """ Deserializes the JSON file '__file_path' into '__objects' """
-        my_list = list()
         try:
             with open(self.__file_path, mode="r", encoding="UTF-8") as f:
                 self.__objects.update(json.load(f))

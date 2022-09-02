@@ -4,7 +4,7 @@
 
 import uuid
 from datetime import datetime
-from models import storage
+import models
 
 
 class BaseModel(object):
@@ -24,14 +24,13 @@ class BaseModel(object):
             kwargs: key/value dictionary of arguments
 
         """
-        if kwargs is None or kwargs.get('id') is None:
+        if not kwargs or kwargs.get('id') is None:
             self.id = str(uuid.uuid4())
-        if kwargs is None or kwargs.get('created_at') is None:
+        if not kwargs or kwargs.get('created_at') is None:
             self.created_at = datetime.now()
-        if kwargs is None or kwargs.get('updated_at') is None:
+        if not kwargs or kwargs.get('updated_at') is None:
             self.updated_at = datetime.now()
-        if not kwargs:
-            storage.new(self)
+
         if kwargs and kwargs is not None:
             for k, v in kwargs.items():
                 if k == "id":
@@ -50,8 +49,11 @@ class BaseModel(object):
                         self.updated_at = v
                     else:
                         self.updated_at = datetime.fromisoformat(v)
-                elif k != "__class__":
+                elif k and k != "__class__":
                     self.__setattr__(k, v)
+
+        if not kwargs:
+            models.storage.new(self)
 
     def __str__(self):
         """ Returns printable string for class instance """
@@ -64,7 +66,7 @@ class BaseModel(object):
 
         """
         self.updated_at = datetime.now()
-        storage.save()
+        models.storage.save()
 
     def to_dict(self):
         """ Returns a dictionary of all keys/values
