@@ -15,10 +15,10 @@ class User(BaseModel):
         last_name (str): last name
 
     """
-    email = str()
-    password = str()
-    first_name = str()
-    last_name = str()
+    email = ""
+    password = ""
+    first_name = ""
+    last_name = ""
 
     def __init__(self, *args, **kwargs):
         """ Constructor method to initialize user instances
