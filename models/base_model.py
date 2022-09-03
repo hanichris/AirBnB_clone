@@ -1,21 +1,14 @@
 #!/usr/bin/env python3
 """ Module to define base class """
-
-
-import uuid
+from copy import deepcopy
+from uuid import uuid4
 from datetime import datetime
 import models
 
 
 class BaseModel(object):
-    """ Base class model for all other classes
+    """ Base class model for all other classes."""
 
-    Attributes:
-        id (str): unique identifier of the instance
-        created_at (datetime): when the instance was created
-        updated_at (datetime): when the instance was updated with new values
-
-    """
     def __init__(self, *args, **kwargs):
         """ Constructor method to initialize class instances
 
@@ -24,37 +17,25 @@ class BaseModel(object):
             kwargs: key/value dictionary of arguments
 
         """
-        self.id = str(uuid.uuid4())
+        self.id = str(uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
 
-        if kwargs and kwargs is not None:
-            for k, v in kwargs.items():
-                if k == "id":
-                    self.id = str(v)
-                elif k == "created_at":
-                    if isinstance(v, int):
-                        self.created_at = datetime(v)
-                    elif isinstance(v, datetime):
-                        self.created_at = v
-                    else:
-                        self.created_at = datetime.fromisoformat(v)
-                elif k == "updated_at":
-                    if isinstance(v, int):
-                        self.updated_at = datetime(v)
-                    elif isinstance(v, datetime):
-                        self.updated_at = v
-                    else:
-                        self.updated_at = datetime.fromisoformat(v)
-                elif k and k != "__class__":
-                    self.__setattr__(k, v)
+        if len(kwargs) > 0:
+            for key, value in kwargs.items():
+                if key == "created_at":
+                    self.created_at = datetime.fromisoformat(value)
+                elif key == "updated_at":
+                    self.updated_at = datetime.fromisoformat(value)
+                else:
+                    if key != "__class__":
+                        setattr(self, key, value)
         else:
             models.storage.new(self)
 
     def __str__(self):
         """ Returns printable string for class instance """
-        return("[{}] ({}) {}".format(self.__class__.__name__,
-                                     self.id, self.__dict__))
+        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
         """ Method to update instance attribute 'updated_at'
@@ -69,12 +50,8 @@ class BaseModel(object):
             in '__dict__' attribute of the instance
 
         """
-        d = dict()
-        d = self.__dict__.copy()
-        if '__class__' not in d:
-            d.update({'__class__': self.__class__.__name__})
-            d.update({'created_at': d.get('created_at').isoformat
-                     (timespec="microseconds")})
-            d.update({'updated_at': d.get('updated_at').isoformat
-                     (timespec="microseconds")})
-        return d
+        new_dict = deepcopy(self.__dict__)
+        new_dict['__class__'] = self.__class__.__name__
+        new_dict['created_at'] = self.created_at.isoformat()
+        new_dict['updated_at'] = self.updated_at.isoformat()
+        return new_dict
