@@ -7,6 +7,11 @@
 import cmd
 from models.base_model import BaseModel
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 from models import storage
 
 
@@ -41,6 +46,26 @@ class HBNBCommand(cmd.Cmd):
                 b_object = User()
                 b_object.save()
                 print(b_object.id)
+            elif create_list[0] == "State":
+                b_object = State()
+                b_object.save()
+                print(b_object.id)
+            elif create_list[0] == "City":
+                b_object = City()
+                b_object.save()
+                print(b_object.id)
+            elif create_list[0] == "Amenity":
+                b_object = Amenity()
+                b_object.save()
+                print(b_object.id)
+            elif create_list[0] == "Place":
+                b_object = Place()
+                b_object.save()
+                print(b_object.id)
+            elif create_list[0] == "Review":
+                b_object = Review()
+                b_object.save()
+                print(b_object.id)
             else:
                 print("** class doesn't exit **")
         else:
@@ -50,6 +75,8 @@ class HBNBCommand(cmd.Cmd):
         """ Prints the string representation of an instance
             based on the class name and id
         """
+        all_variables = list("BaseModel", "User", "State", "City", "Amenity",
+                             "Place", "Review")
         if args:
             my_list = list(args.split(" "))
             if len(my_list) == 2:
@@ -63,8 +90,33 @@ class HBNBCommand(cmd.Cmd):
                                           str(my_list[1]))):
                     obj = storage.all().get("{}.{}".format("User",
                                             str(my_list[1])))
+                elif my_list[0] == "State" and\
+                        storage.all().get("{}.{}".format("State",
+                                          str(my_list[1]))):
+                    obj = storage.all().get("{}.{}".format("State",
+                                            str(my_list[1])))
+                elif my_list[0] == "City" and\
+                        storage.all().get("{}.{}".format("City",
+                                          str(my_list[1]))):
+                    obj = storage.all().get("{}.{}".format("City",
+                                            str(my_list[1])))
+                elif my_list[0] == "Amenity" and\
+                        storage.all().get("{}.{}".format("Amenity",
+                                          str(my_list[1]))):
+                    obj = storage.all().get("{}.{}".format("Amenity",
+                                            str(my_list[1])))
+                elif my_list[0] == "Place" and\
+                        storage.all().get("{}.{}".format("Place",
+                                          str(my_list[1]))):
+                    obj = storage.all().get("{}.{}".format("Place",
+                                            str(my_list[1])))
+                elif my_list[0] == "Review" and\
+                        storage.all().get("{}.{}".format("Review",
+                                          str(my_list[1]))):
+                    obj = storage.all().get("{}.{}".format("Review",
+                                            str(my_list[1])))
                 print(obj)
-            elif my_list[0] != "BaseModel" or my_list[0] != "User":
+            elif my_list[0] not in all_variables:
                 print("** class doesn't exit **")
             elif len(my_list) < 2:
                 print("** instance id missing **")
@@ -77,6 +129,8 @@ class HBNBCommand(cmd.Cmd):
         """ Deletes an instance based on the class name and id
             (save the change into the JSON file)
         """
+        all_variables = list("BaseModel", "User", "State", "City", "Amenity",
+                             "Place", "Review")
         if args:
             my_list = list(args.split(" "))
             if len(my_list) == 2:
@@ -90,9 +144,34 @@ class HBNBCommand(cmd.Cmd):
                                           str(my_list[1]))):
                     obj = storage.all().get("{}.{}".format("User",
                                             str(my_list[1])))
+                elif my_list[0] == "State" and\
+                        storage.all().get("{}.{}".format("State",
+                                          str(my_list[1]))):
+                    obj = storage.all().get("{}.{}".format("State",
+                                            str(my_list[1])))
+                elif my_list[0] == "City" and\
+                        storage.all().get("{}.{}".format("City",
+                                          str(my_list[1]))):
+                    obj = storage.all().get("{}.{}".format("City",
+                                            str(my_list[1])))
+                elif my_list[0] == "Amenity" and\
+                        storage.all().get("{}.{}".format("Amenity",
+                                          str(my_list[1]))):
+                    obj = storage.all().get("{}.{}".format("Amenity",
+                                            str(my_list[1])))
+                elif my_list[0] == "Place" and\
+                        storage.all().get("{}.{}".format("Place",
+                                          str(my_list[1]))):
+                    obj = storage.all().get("{}.{}".format("Place",
+                                            str(my_list[1])))
+                elif my_list[0] == "Review" and\
+                        storage.all().get("{}.{}".format("Review",
+                                          str(my_list[1]))):
+                    obj = storage.all().get("{}.{}".format("Review",
+                                            str(my_list[1])))
                 del obj
                 storage.save()
-            elif my_list[0] != "BaseModel" or my_list[0] != "User":
+            elif my_list[0] not in all_variables:
                 print("** class doesn't exit **")
             elif len(my_list) < 2:
                 print("** instance id missing **")
@@ -117,6 +196,31 @@ class HBNBCommand(cmd.Cmd):
                 for k, v in all_objs:
                     if k.startswith("User"):
                         print(v)
+            elif all_list[0] == "State":
+                all_objs = list(storage.all().items())
+                for k, v in all_objs:
+                    if k.startswith("State"):
+                        print(v)
+            elif all_list[0] == "City":
+                all_objs = list(storage.all().items())
+                for k, v in all_objs:
+                    if k.startswith("City"):
+                        print(v)
+            elif all_list[0] == "Amenity":
+                all_objs = list(storage.all().items())
+                for k, v in all_objs:
+                    if k.startswith("Amenity"):
+                        print(v)
+            elif all_list[0] == "Place":
+                all_objs = list(storage.all().items())
+                for k, v in all_objs:
+                    if k.startswith("Place"):
+                        print(v)
+            elif all_list[0] == "Review":
+                all_objs = list(storage.all().items())
+                for k, v in all_objs:
+                    if k.startswith("Review"):
+                        print(v)
             else:
                 print("** class doesn't exit **")
         else:
@@ -128,6 +232,8 @@ class HBNBCommand(cmd.Cmd):
         """ Updates an instance based on the class name and id
         by adding or updating attribute (save the change into the JSON file
         """
+        all_variables = list("BaseModel", "User", "State", "City", "Amenity",
+                             "Place", "Review")
         if args:
             update_list = list(args.split(" "))
             if len(update_list) == 4:
@@ -141,6 +247,32 @@ class HBNBCommand(cmd.Cmd):
                                           str(update_list[1]))):
                     obj = storage.all().get("{}.{}".format("User",
                                             str(update_list[1])))
+                elif update_list[0] == "State" and\
+                        storage.all().get("{}.{}".format("State",
+                                          str(update_list[1]))):
+                    obj = storage.all().get("{}.{}".format("State",
+                                            str(update_list[1])))
+                elif update_list[0] == "City" and\
+                        storage.all().get("{}.{}".format("City",
+                                          str(update_list[1]))):
+                    obj = storage.all().get("{}.{}".format("City",
+                                            str(update_list[1])))
+                elif update_list[0] == "Amenity" and\
+                        storage.all().get("{}.{}".format("Amenity",
+                                          str(update_list[1]))):
+                    obj = storage.all().get("{}.{}".format("Amenity",
+                                            str(update_list[1])))
+                elif update_list[0] == "Place" and\
+                        storage.all().get("{}.{}".format("Place",
+                                          str(update_list[1]))):
+                    obj = storage.all().get("{}.{}".format("Place",
+                                            str(update_list[1])))
+                elif update_list[0] == "Review" and\
+                        storage.all().get("{}.{}".format("Review",
+                                          str(update_list[1]))):
+                    obj = storage.all().get("{}.{}".format("Review",
+                                            str(update_list[1])))
+
                 index = 2
                 while index < len(update_list):
                     if update_list[index] != "id" or\
@@ -150,13 +282,23 @@ class HBNBCommand(cmd.Cmd):
                         index += 2
                 storage.new(obj)
                 storage.save()
-            elif update_list[0] != "BaseModel" or update_list[0] != "User":
+            elif update_list[0] not in all_variables:
                 print("** class doesn't exit **")
             elif len(update_list) < 2:
                 print("** instance id missing **")
             elif not storage.all().get("{}.{}".format("BaseModel",
                                        update_list[1])) or\
                     not storage.all().get("{}.{}".format("User",
+                                          update_list[1])) or\
+                    not storage.all().get("{}.{}".format("State",
+                                          update_list[1])) or\
+                    not storage.all().get("{}.{}".format("City",
+                                          update_list[1])) or\
+                    not storage.all().get("{}.{}".format("Amenity",
+                                          update_list[1])) or\
+                    not storage.all().get("{}.{}".format("Place",
+                                          update_list[1])) or\
+                    not storage.all().get("{}.{}".format("Review",
                                           update_list[1])):
                 print("** no instance found **")
             elif len(update_list) < 3:

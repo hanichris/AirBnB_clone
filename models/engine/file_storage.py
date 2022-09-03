@@ -5,6 +5,11 @@ import os
 import json
 from models.base_model import BaseModel
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class FileStorage(object):
@@ -32,7 +37,20 @@ class FileStorage(object):
         d = self.__objects.copy()
         if d is not None:
             for k, v in list(d.items()):
-                d[k] = BaseModel(dict(v))
+                if k.startswith("BaseModel"):
+                    d[k] = BaseModel(dict(v))
+                if k.startswith("User"):
+                    d[k] = User(dict(v))
+                if k.startswith("State"):
+                    d[k] = State(dict(v))
+                if k.startswith("City"):
+                    d[k] = City(dict(v))
+                if k.startswith("Amenity"):
+                    d[k] = Amenity(dict(v))
+                if k.startswith("Place"):
+                    d[k] = Place(dict(v))
+                if k.startswith("Review"):
+                    d[k] = Review(dict(v))
         return d
 
     def new(self, obj):

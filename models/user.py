@@ -19,3 +19,13 @@ class User(BaseModel):
     password = str()
     first_name = str()
     last_name = str()
+
+    def __init__(self, *args, **kwargs):
+        """ Constructor method to initialize user instances
+
+        Args:
+            args: list of arguments
+            kwargs: key/value dictionary of arguments
+
+        """
+        super().__init__(args, kwargs)
