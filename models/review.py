@@ -1,7 +1,5 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """ Module to define review instances """
-
-
 from models.base_model import BaseModel
 
 
@@ -14,9 +12,9 @@ class Review(BaseModel):
         text (str): short information
 
     """
-    place_id = str()
-    user_id = str()
-    text = str()
+    place_id = ""
+    user_id = ""
+    text = ""
 
     def __init__(self, *args, **kwargs):
         """ Constructor method to initialize review instances

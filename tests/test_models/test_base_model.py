@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """ Unittest test cases for 'models.base_model' """
 import unittest
 from datetime import datetime

@@ -11,8 +11,6 @@
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
-file.json
-models/
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/

@@ -1,9 +1,8 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """ Module to define a custom shell to let a user
     work with the 'AirBnB' program interactively
 
 """
-
 import cmd
 from models.base_model import BaseModel
 from models.user import User

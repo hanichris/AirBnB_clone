@@ -1,7 +1,5 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """ Module to define a state instances """
-
-
 from models.base_model import BaseModel
 
 
@@ -12,7 +10,7 @@ class State(BaseModel):
         name (str): name of the state
 
     """
-    name = str()
+    name = ""
 
     def __init__(self, *args, **kwargs):
         """ Constructor method to initialize state instances

@@ -1,7 +1,5 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """ Module to define a city instances """
-
-
 from models.base_model import BaseModel
 
 
@@ -13,8 +11,8 @@ class City(BaseModel):
         state_id (str): unique id of the state
 
     """
-    name = str()
-    state_id = str()
+    name = ""
+    state_id = ""
 
     def __init__(self, *args, **kwargs):
         """ Constructor method to initialize city instances

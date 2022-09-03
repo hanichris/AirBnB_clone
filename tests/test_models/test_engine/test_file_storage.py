@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """ Unittest test cases for 'models.engine.file_storage' """
 import unittest
 from models.engine.file_storage import FileStorage
