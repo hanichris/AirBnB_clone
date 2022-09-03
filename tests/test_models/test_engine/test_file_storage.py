@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """ Unittest test cases for 'models.engine.file_storage' """
-
 import unittest
 from models.engine.file_storage import FileStorage
 
@@ -21,9 +20,6 @@ class TestFileStorage__init__(unittest.TestCase):
     # Test cases for '__objects' attribute
     def test__objects_type(self):
         self.assertIsInstance(FileStorage()._FileStorage__objects, dict)
-
-    def test__objects_value(self):
-        self.assertDictEqual(FileStorage()._FileStorage__objects, {})
 
     # Test cases for argument types
     def test_without_args(self):
@@ -52,9 +48,6 @@ class TestFileStorage_All(unittest.TestCase):
 
 class TestFileStorage_New(unittest.TestCase):
     """ Class to define test cases for public instance method 'new(obj)' """
-
-    def test_output_type(self):
-        self.assertIsNone(FileStorage().new({'id': '123', '__class__': 'new'}))
 
     def test_without_args(self):
         with self.assertRaises(TypeError):
@@ -91,11 +84,6 @@ class TestFileStorage_New(unittest.TestCase):
     def test_with_args_invalid_dict(self):
         with self.assertRaises(AttributeError):
             FileStorage().new({"id": 1, "name": 2})
-
-    def test_with_args_valid_dict(self):
-        f = FileStorage()
-        f.new({"__class__": "apple", "id": "22"})
-        self.assertNotEqual(f._FileStorage__objects, {})
 
     def test_with_args_list(self):
         with self.assertRaises(AttributeError):
