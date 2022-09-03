@@ -14,21 +14,23 @@ class FileStorage(object):
         __objects (dict): object storage structure
 
     """
+    __file_path = os.path.relpath('file.json')
+    __objects = dict()
 
     def __init__(self):
         """ The constructor to initialize new file storage instances """
         try:
-            self.__file_path = os.path.relpath('file.json')
+            self.__file_path = FileStorage.__file_path
         except FileNotFoundError:
             pass
-        self.__objects = dict()
+        self.__objects = FileStorage.__objects
 
     def all(self):
         """ Returns the dictionary of objects """
         d = dict()
         d = self.__objects.copy()
         if d is not None:
-            for k, v in d.items():
+            for k, v in list(d.items()):
                 d[k] = BaseModel(dict(v))
         return d
 

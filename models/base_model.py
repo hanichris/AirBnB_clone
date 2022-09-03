@@ -24,12 +24,9 @@ class BaseModel(object):
             kwargs: key/value dictionary of arguments
 
         """
-        if not kwargs or kwargs.get('id') is None:
-            self.id = str(uuid.uuid4())
-        if not kwargs or kwargs.get('created_at') is None:
-            self.created_at = datetime.now()
-        if not kwargs or kwargs.get('updated_at') is None:
-            self.updated_at = datetime.now()
+        self.id = str(uuid.uuid4())
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
 
         if kwargs and kwargs is not None:
             for k, v in kwargs.items():
@@ -51,8 +48,7 @@ class BaseModel(object):
                         self.updated_at = datetime.fromisoformat(v)
                 elif k and k != "__class__":
                     self.__setattr__(k, v)
-
-        if not kwargs:
+        else:
             models.storage.new(self)
 
     def __str__(self):
