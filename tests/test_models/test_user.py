@@ -2,14 +2,14 @@
 """ Unittest test cases for 'models.base_model' """
 import unittest
 from datetime import datetime
-from models.base_model import BaseModel
+from models.user import User
 
 
-class TestBaseModel_Instantiation(unittest.TestCase):
-    """Test the instantiation of the BaseModel class."""
+class TestUser_Instantiation(unittest.TestCase):
+    """Test the instantiation of the User class."""
 
     def setUp(self):
-        self.model = BaseModel()
+        self.model = User()
 
     def tearDown(self):
         del self.model
@@ -17,33 +17,44 @@ class TestBaseModel_Instantiation(unittest.TestCase):
     def test_instance_exists(self):
         self.assertIsNotNone(self.model)
 
+    def test_class_attributes(self):
+        self.assertTrue(hasattr(User, 'email'))
+        self.assertTrue(hasattr(User, 'password'))
+        self.assertTrue(hasattr(User, 'first_name'))
+        self.assertTrue(hasattr(User, 'last_name'))
+
+    def test_class_attributes_type(self):
+        self.assertIsInstance(getattr(User, 'email'), str)
+        self.assertIsInstance(getattr(User, 'password'), str)
+        self.assertIsInstance(getattr(User, 'first_name'), str)
+        self.assertIsInstance(getattr(User, 'last_name'), str)
+
     def test_assigned_attributes(self):
         self.assertTrue(hasattr(self.model, 'id'))
         self.assertTrue(hasattr(self.model, 'created_at'))
         self.assertTrue(hasattr(self.model, 'updated_at'))
 
     def test_unique_ids(self):
-        my_model = BaseModel()
+        my_model = User()
         self.assertNotEqual(self.model.id, my_model.id)
 
     def test_creation_time(self):
-        my_model = BaseModel()
+        my_model = User()
         self.assertNotEqual(self.model.created_at, my_model.created_at)
 
     def test_no_args_instantiation(self):
-        self.assertIsInstance(self.model, BaseModel)
+        self.assertIsInstance(self.model, User)
 
     def test_args_instantiation(self):
-        my_model = BaseModel("name", "number")
-        self.assertIsInstance(my_model, BaseModel)
+        my_model = User("name", "number")
+        self.assertIsInstance(my_model, User)
 
     def test_no_kwargs_instantiation(self):
-        self.assertIsInstance(self.model, BaseModel)
+        self.assertIsInstance(self.model, User)
 
     def test_kwargs_instantiation(self):
-        my_model = BaseModel(name="My First Model", number=89)
-        self.assertTrue(hasattr(my_model, 'name'))
-        self.assertTrue(hasattr(my_model, 'number'))
+        my_model = User(name="My First Model", number=89)
+        self.assertIsInstance(self.model, User)
 
     def test_created_at_type(self):
         self.assertTrue(isinstance(self.model.created_at, datetime))
@@ -55,11 +66,11 @@ class TestBaseModel_Instantiation(unittest.TestCase):
         self.assertTrue(isinstance(self.model.id, str))
 
 
-class TestBaseModel__str__(unittest.TestCase):
+class TestUser__str__(unittest.TestCase):
     """ Class to define test cases for public instance method '__str__()' """
 
     def setUp(self):
-        self.model = BaseModel()
+        self.model = User()
 
     def tearDown(self):
         del self.model
@@ -93,11 +104,11 @@ class TestBaseModel__str__(unittest.TestCase):
             self.model.__str__("id")
 
 
-class TestBaseModel_Save(unittest.TestCase):
+class TestUser_Save(unittest.TestCase):
     """ Class to define test cases for public instance method 'save()' """
 
     def setUp(self):
-        self.model = BaseModel()
+        self.model = User()
 
     def tearDown(self):
         del self.model
@@ -121,11 +132,11 @@ class TestBaseModel_Save(unittest.TestCase):
             self.model.save("id")
 
 
-class TestBaseModel_to_dict(unittest.TestCase):
-    """Test the `to_dict` instance method of the BaseModel class."""
+class TestUser_to_dict(unittest.TestCase):
+    """Test the `to_dict` instance method of the User class."""
 
     def setUp(self):
-        self.model = BaseModel(name="My First Model", number=89)
+        self.model = User()
 
     def tearDown(self):
         del self.model
@@ -139,9 +150,7 @@ class TestBaseModel_to_dict(unittest.TestCase):
                                                 '%Y-%m-%dT%H:%M:%S.%f'),
                                 'updated_at': self.model.updated_at.strftime(
                                                 '%Y-%m-%dT%H:%M:%S.%f'),
-                                'name': self.model.name,
-                                'number': self.model.number,
-                                '__class__': BaseModel.__name__
+                                '__class__': User.__name__
                              })
 
     def test_output_type(self):
