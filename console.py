@@ -19,16 +19,15 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
 
     def emptyline(self):
-        """ Handle response to empty line to the prompt """
+        """Handle response to empty line to the prompt """
         return False
 
     def do_quit(self, args):
-        """ Quit command to exit the program
-        """
+        """Quit command to exit the program."""
         return True
 
     def do_EOF(self, args):
-        """ EOF command to close the program """
+        """EOF command to close the program"""
         return True
 
     def do_create(self, args):
