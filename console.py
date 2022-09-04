@@ -73,46 +73,39 @@ class HBNBCommand(cmd.Cmd):
         """ Prints the string representation of an instance
             based on the class name and id
         """
-        all_variables = list("BaseModel", "User", "State", "City", "Amenity",
-                             "Place", "Review")
+        all_variables = list(["BaseModel", "User", "State", "City", "Amenity",
+                             "Place", "Review"])
         if args:
             my_list = list(args.split(" "))
-            if len(my_list) == 2:
+            if len(my_list) == 2 and my_list[0] in all_variables:
                 if my_list[0] == "BaseModel" and\
-                        storage.all().get("{}.{}".format("BaseModel",
-                                          str(my_list[1]))):
-                    obj = storage.all().get("{}.{}".format("BaseModel",
-                                            str(my_list[1])))
+                        storage.all().get(f"{'BaseModel'}.{str(my_list[1])}")\
+                            is not None:
+                    obj = storage.all().get(f"{'BaseModel'}.{str(my_list[1])}")
                 elif my_list[0] == "User" and\
-                        storage.all().get("{}.{}".format("User",
-                                          str(my_list[1]))):
-                    obj = storage.all().get("{}.{}".format("User",
-                                            str(my_list[1])))
+                        storage.all().get(f"{'User'}.{str(my_list[1])}") \
+                            is not None:
+                    obj = storage.all().get(f"{'User'}.{str(my_list[1])}")
                 elif my_list[0] == "State" and\
-                        storage.all().get("{}.{}".format("State",
-                                          str(my_list[1]))):
-                    obj = storage.all().get("{}.{}".format("State",
-                                            str(my_list[1])))
+                        storage.all().get(f"{'State'}.{str(my_list[1])}") \
+                            is not None:
+                    obj = storage.all().get(f"{'State'}.{str(my_list[1])}")
                 elif my_list[0] == "City" and\
-                        storage.all().get("{}.{}".format("City",
-                                          str(my_list[1]))):
-                    obj = storage.all().get("{}.{}".format("City",
-                                            str(my_list[1])))
+                        storage.all().get(f"{'City'}.{str(my_list[1])}") \
+                            is not None:
+                    obj = storage.all().get(f"{'City'}.{str(my_list[1])}")
                 elif my_list[0] == "Amenity" and\
-                        storage.all().get("{}.{}".format("Amenity",
-                                          str(my_list[1]))):
-                    obj = storage.all().get("{}.{}".format("Amenity",
-                                            str(my_list[1])))
+                        storage.all().get(f"{'Amenity'}.{str(my_list[1])}") \
+                            is not None:
+                    obj = storage.all().get(f"{'Amenity'}.{str(my_list[1])}")
                 elif my_list[0] == "Place" and\
-                        storage.all().get("{}.{}".format("Place",
-                                          str(my_list[1]))):
-                    obj = storage.all().get("{}.{}".format("Place",
-                                            str(my_list[1])))
+                        storage.all().get(f"{'Place'}.{str(my_list[1])}") \
+                            is not None:
+                    obj = storage.all().get(f"{'Place'}.{str(my_list[1])}")
                 elif my_list[0] == "Review" and\
-                        storage.all().get("{}.{}".format("Review",
-                                          str(my_list[1]))):
-                    obj = storage.all().get("{}.{}".format("Review",
-                                            str(my_list[1])))
+                        storage.all().get(f"{'Review'}.{str(my_list[1])}") \
+                            is not None:
+                    obj = storage.all().get(f"{'Review'}.{str(my_list[1])}")
                 print(obj)
             elif my_list[0] not in all_variables:
                 print("** class doesn't exit **")
@@ -127,46 +120,39 @@ class HBNBCommand(cmd.Cmd):
         """ Deletes an instance based on the class name and id
             (save the change into the JSON file)
         """
-        all_variables = list("BaseModel", "User", "State", "City", "Amenity",
-                             "Place", "Review")
+        all_variables = list(["BaseModel", "User", "State", "City", "Amenity",
+                             "Place", "Review"])
         if args:
             my_list = list(args.split(" "))
-            if len(my_list) == 2:
+            if len(my_list) == 2 and my_list[0] in all_variables:
                 if my_list[0] == "BaseModel" and\
-                        storage.all().get("{}.{}".format("BaseModel",
-                                          str(my_list[1]))):
-                    obj = storage.all().get("{}.{}".format("BaseModel",
-                                            str(my_list[1])))
+                        storage.all().get(f"{'BaseModel'}.{str(my_list[1])}")\
+                            is not None:
+                    obj = storage.all().get(f"{'BaseModel'}.{str(my_list[1])}")
                 elif my_list[0] == "User" and\
-                        storage.all().get("{}.{}".format("User",
-                                          str(my_list[1]))):
-                    obj = storage.all().get("{}.{}".format("User",
-                                            str(my_list[1])))
+                        storage.all().get(f"{'User'}.{str(my_list[1])}") \
+                            is not None:
+                    obj = storage.all().get(f"{'User'}.{str(my_list[1])}")
                 elif my_list[0] == "State" and\
-                        storage.all().get("{}.{}".format("State",
-                                          str(my_list[1]))):
-                    obj = storage.all().get("{}.{}".format("State",
-                                            str(my_list[1])))
+                        storage.all().get(f"{'State'}.{str(my_list[1])}") \
+                            is not None:
+                    obj = storage.all().get(f"{'State'}.{str(my_list[1])}")
                 elif my_list[0] == "City" and\
-                        storage.all().get("{}.{}".format("City",
-                                          str(my_list[1]))):
-                    obj = storage.all().get("{}.{}".format("City",
-                                            str(my_list[1])))
+                        storage.all().get(f"{'City'}.{str(my_list[1])}") \
+                            is not None:
+                    obj = storage.all().get(f"{'City'}.{str(my_list[1])}")
                 elif my_list[0] == "Amenity" and\
-                        storage.all().get("{}.{}".format("Amenity",
-                                          str(my_list[1]))):
-                    obj = storage.all().get("{}.{}".format("Amenity",
-                                            str(my_list[1])))
+                        storage.all().get(f"{'Amenity'}.{str(my_list[1])}") \
+                            is not None:
+                    obj = storage.all().get(f"{'Amenity'}.{str(my_list[1])}")
                 elif my_list[0] == "Place" and\
-                        storage.all().get("{}.{}".format("Place",
-                                          str(my_list[1]))):
-                    obj = storage.all().get("{}.{}".format("Place",
-                                            str(my_list[1])))
+                        storage.all().get(f"{'Place'}.{str(my_list[1])}") \
+                            is not None:
+                    obj = storage.all().get(f"{'Place'}.{str(my_list[1])}")
                 elif my_list[0] == "Review" and\
-                        storage.all().get("{}.{}".format("Review",
-                                          str(my_list[1]))):
-                    obj = storage.all().get("{}.{}".format("Review",
-                                            str(my_list[1])))
+                        storage.all().get(f"{'Review'}.{str(my_list[1])}") \
+                            is not None:
+                    obj = storage.all().get(f"{'Review'}.{str(my_list[1])}")
                 del obj
                 storage.save()
             elif my_list[0] not in all_variables:
@@ -230,78 +216,64 @@ class HBNBCommand(cmd.Cmd):
         """ Updates an instance based on the class name and id
         by adding or updating attribute (save the change into the JSON file
         """
-        all_variables = list("BaseModel", "User", "State", "City", "Amenity",
-                             "Place", "Review")
+        all_variables = list(["BaseModel", "User", "State", "City", "Amenity",
+                             "Place", "Review"])
         if args:
-            update_list = list(args.split(" "))
-            if len(update_list) == 4:
-                if update_list[0] == "BaseModel" and\
-                        storage.all().get("{}.{}".format("BaseModel",
-                                          str(update_list[1]))):
-                    obj = storage.all().get("{}.{}".format("BaseModel",
-                                            str(update_list[1])))
-                elif update_list[0] == "User" and\
-                        storage.all().get("{}.{}".format("User",
-                                          str(update_list[1]))):
-                    obj = storage.all().get("{}.{}".format("User",
-                                            str(update_list[1])))
-                elif update_list[0] == "State" and\
-                        storage.all().get("{}.{}".format("State",
-                                          str(update_list[1]))):
-                    obj = storage.all().get("{}.{}".format("State",
-                                            str(update_list[1])))
-                elif update_list[0] == "City" and\
-                        storage.all().get("{}.{}".format("City",
-                                          str(update_list[1]))):
-                    obj = storage.all().get("{}.{}".format("City",
-                                            str(update_list[1])))
-                elif update_list[0] == "Amenity" and\
-                        storage.all().get("{}.{}".format("Amenity",
-                                          str(update_list[1]))):
-                    obj = storage.all().get("{}.{}".format("Amenity",
-                                            str(update_list[1])))
-                elif update_list[0] == "Place" and\
-                        storage.all().get("{}.{}".format("Place",
-                                          str(update_list[1]))):
-                    obj = storage.all().get("{}.{}".format("Place",
-                                            str(update_list[1])))
-                elif update_list[0] == "Review" and\
-                        storage.all().get("{}.{}".format("Review",
-                                          str(update_list[1]))):
-                    obj = storage.all().get("{}.{}".format("Review",
-                                            str(update_list[1])))
+            my_list = list(args.split(" "))
+            if len(my_list) == 4 and my_list[0] in all_variables:
+                if my_list[0] == "BaseModel" and\
+                        storage.all().get(f"{'BaseModel'}.{str(my_list[1])}") \
+                            is not None:
+                    obj = storage.all().get(f"{'BaseModel'}.{str(my_list[1])}")
+                elif my_list[0] == "User" and\
+                        storage.all().get(f"{'User'}.{str(my_list[1])}") \
+                            is not None:
+                    obj = storage.all().get(f"{'User'}.{str(my_list[1])}")
+                elif my_list[0] == "State" and\
+                        storage.all().get(f"{'State'}.{str(my_list[1])}") \
+                            is not None:
+                    obj = storage.all().get(f"{'State'}.{str(my_list[1])}")
+                elif my_list[0] == "City" and\
+                        storage.all().get(f"{'City'}.{str(my_list[1])}") \
+                            is not None:
+                    obj = storage.all().get(f"{'City'}.{str(my_list[1])}")
+                elif my_list[0] == "Amenity" and\
+                        storage.all().get(f"{'Amenity'}.{str(my_list[1])}") \
+                            is not None:
+                    obj = storage.all().get(f"{'Amenity'}.{str(my_list[1])}")
+                elif my_list[0] == "Place" and\
+                        storage.all().get(f"{'Place'}.{str(my_list[1])}") \
+                            is not None:
+                    obj = storage.all().get(f"{'Place'}.{str(my_list[1])}")
+                elif my_list[0] == "Review" and\
+                        storage.all().get(f"{'Review'}.{str(my_list[1])}") \
+                            is not None:
+                    obj = storage.all().get(f"{'Review'}.{str(my_list[1])}")
 
                 index = 2
-                while index < len(update_list):
-                    if update_list[index] != "id" or\
-                            update_list[index] != "created_at" or\
-                            update_list[index] != "updated_at":
-                        obj.__dict__[update_list[index]] = update_list[index+1]
+                while index < len(my_list):
+                    if my_list[index] != "id" or\
+                            my_list[index] != "created_at" or\
+                            my_list[index] != "updated_at":
+                        obj.__dict__[my_list[index]] = my_list[index+1]
                         index += 2
                 storage.new(obj)
                 storage.save()
-            elif update_list[0] not in all_variables:
+            elif my_list[0] not in all_variables:
                 print("** class doesn't exit **")
-            elif len(update_list) < 2:
+            elif len(my_list) < 2:
                 print("** instance id missing **")
-            elif not storage.all().get("{}.{}".format("BaseModel",
-                                       update_list[1])) or\
-                    not storage.all().get("{}.{}".format("User",
-                                          update_list[1])) or\
-                    not storage.all().get("{}.{}".format("State",
-                                          update_list[1])) or\
-                    not storage.all().get("{}.{}".format("City",
-                                          update_list[1])) or\
-                    not storage.all().get("{}.{}".format("Amenity",
-                                          update_list[1])) or\
-                    not storage.all().get("{}.{}".format("Place",
-                                          update_list[1])) or\
-                    not storage.all().get("{}.{}".format("Review",
-                                          update_list[1])):
+            elif not storage.all().get(f"{'BaseModel'}.{my_list[1]}") or\
+                    not storage.all().get(f"{'User'}.{my_list[1]}") or\
+                    not storage.all().get(f"{'State'}.{my_list[1]}") or\
+                    not storage.all().get(f"{'City'}.{my_list[1]}") or\
+                    not storage.all().get(f"{'Amenity'}.{my_list[1]}") or\
+                    not storage.all().get(f"{'Place'}.{my_list[1]}") or\
+                    not storage.all().get(f"{'Review'}.{my_list[1]}"):
                 print("** no instance found **")
-            elif len(update_list) < 3:
+            elif len(my_list) < 3:
                 print("** attribute name missing **")
-            elif len(update_list) < 4:
+            elif len(my_list) < 4:
                 print("** value missing **")
         else:
             print("** class name missing **")
