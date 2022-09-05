@@ -26,7 +26,7 @@ class TestPlace_Instantiation(unittest.TestCase):
         self.assertTrue(hasattr(Place, 'number_bathrooms'))
         self.assertTrue(hasattr(Place, 'max_guest'))
         self.assertTrue(hasattr(Place, 'price_by_night'))
-        self.assertTrue(hasattr(Place, 'latitide'))
+        self.assertTrue(hasattr(Place, 'latitude'))
         self.assertTrue(hasattr(Place, 'longitude'))
         self.assertTrue(hasattr(Place, 'amenity_ids'))
 
@@ -39,7 +39,7 @@ class TestPlace_Instantiation(unittest.TestCase):
         self.assertIsInstance(getattr(Place, 'number_bathrooms'), int)
         self.assertIsInstance(getattr(Place, 'max_guest'), int)
         self.assertIsInstance(getattr(Place, 'price_by_night'), int)
-        self.assertIsInstance(getattr(Place, 'latitide'), float)
+        self.assertIsInstance(getattr(Place, 'latitude'), float)
         self.assertIsInstance(getattr(Place, 'longitude'), float)
         self.assertIsInstance(getattr(Place, 'amenity_ids'), list)
 
@@ -160,10 +160,10 @@ class TestPlace_to_dict(unittest.TestCase):
         self.assertDictEqual(model_json,
                              {
                                 'id': self.model.id,
-                                'created_at': self.model.created_at.strftime(
-                                                '%Y-%m-%dT%H:%M:%S.%f'),
-                                'updated_at': self.model.updated_at.strftime(
-                                                '%Y-%m-%dT%H:%M:%S.%f'),
+                                'created_at': self.model.created_at.isoformat(
+                                    timespec="microseconds"),
+                                'updated_at': self.model.updated_at.isoformat(
+                                    timespec="microseconds"),
                                 '__class__': Place.__name__
                              })
 

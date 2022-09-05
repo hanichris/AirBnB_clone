@@ -142,10 +142,10 @@ class TestCity_to_dict(unittest.TestCase):
         self.assertDictEqual(model_json,
                              {
                                 'id': self.model.id,
-                                'created_at': self.model.created_at.strftime(
-                                                '%Y-%m-%dT%H:%M:%S.%f'),
-                                'updated_at': self.model.updated_at.strftime(
-                                                '%Y-%m-%dT%H:%M:%S.%f'),
+                                'created_at': self.model.created_at.isoformat(
+                                    timespec="microseconds"),
+                                'updated_at': self.model.updated_at.isoformat(
+                                    timespec="microseconds"),
                                 '__class__': City.__name__
                              })
 

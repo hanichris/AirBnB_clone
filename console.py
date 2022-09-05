@@ -53,7 +53,7 @@ class HBNBCommand(cmd.Cmd):
                 new_object.save()
                 print(new_object.id)
             else:
-                print("** class doesn't exit **")
+                print("** class doesn't exist **")
         else:
             print("** class name missing **")
 

@@ -15,7 +15,7 @@ class Place(BaseModel):
         number_bathrooms (int): number of bathrooms
         max_guest (int): maximum number of guests
         price_by_night (int): cost price for the night
-        latitide (float): latitude gps point
+        latitude (float): latitude gps point
         longitude (float): longitude gps point
         amenity_ids (list): list of all unique ids of the places
 
@@ -29,7 +29,7 @@ class Place(BaseModel):
     number_bathrooms = 0
     max_guest = 0
     price_by_night = 0
-    latitide = 0.0
+    latitude = 0.0
     longitude = 0.0
     amenity_ids = []
 

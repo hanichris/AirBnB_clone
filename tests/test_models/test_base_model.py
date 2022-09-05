@@ -136,11 +136,11 @@ class TestBaseModel_to_dict(unittest.TestCase):
                              {
                                 'id': self.model.id,
                                 'created_at':
-                                self.model.created_at.strftime(
-                                    '%Y-%m-%dT%H:%M:%S.%f'),
+                                self.model.created_at.isoformat(
+                                    timespec="microseconds"),
                                 'updated_at':
-                                self.model.updated_at.strftime(
-                                    '%Y-%m-%dT%H:%M:%S.%f'),
+                                self.model.updated_at.isoformat(
+                                    timespec="microseconds"),
                                 'name': self.model.name,
                                 'number': self.model.number,
                                 '__class__': BaseModel.__name__
