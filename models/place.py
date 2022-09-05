@@ -1,7 +1,5 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """ Module to define amenity instances """
-
-
 from models.base_model import BaseModel
 
 
@@ -23,17 +21,17 @@ class Place(BaseModel):
 
 
     """
-    name = str()
-    city_id = str()
-    user_id = str()
-    description = str()
-    number_rooms = int(0)
-    number_bathrooms = int(0)
-    max_guest = int(0)
-    price_by_night = int(0)
-    latitide = float(0.0)
-    longitude = float(0.0)
-    amenity_ids = list()
+    name = ""
+    city_id = ""
+    user_id = ""
+    description = ""
+    number_rooms = 0
+    number_bathrooms = 0
+    max_guest = 0
+    price_by_night = 0
+    latitide = 0.0
+    longitude = 0.0
+    amenity_ids = []
 
     def __init__(self, *args, **kwargs):
         """ Constructor method to initialize place instances

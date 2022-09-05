@@ -1,14 +1,27 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """ Unittest test cases for 'models.engine.file_storage' """
 import unittest
 from models.engine.file_storage import FileStorage
+from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class TestFileStorage__init__(unittest.TestCase):
     """ Class to define test cases for public instance method '__init__()' """
 
     def test_output_type(self):
-        self.assertIsNotNone(FileStorage())
+        self.assertIsNone(FileStorage().new(BaseModel()))
+        self.assertIsNone(FileStorage().new(User()))
+        self.assertIsNone(FileStorage().new(State()))
+        self.assertIsNone(FileStorage().new(City()))
+        self.assertIsNone(FileStorage().new(Amenity()))
+        self.assertIsNone(FileStorage().new(Place()))
+        self.assertIsNone(FileStorage().new(Review()))
 
     # Test cases for '__file_path' attribute
     def test__file_path_type(self):

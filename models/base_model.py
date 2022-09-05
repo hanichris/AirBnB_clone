@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """ Module to define base class """
 from copy import deepcopy
 from uuid import uuid4
