@@ -127,82 +127,36 @@ class HBNBCommand(cmd.Cmd):
             print(list_objects)
 
     def do_update(self, args):
-        """ Updates an instance based on the class name and id
-        by adding or updating attribute (save the change into the JSON file
-        """
-        all_variables = list("BaseModel", "User", "State", "City", "Amenity",
-                             "Place", "Review")
-        if args:
-            update_list = list(args.split(" "))
-            if len(update_list) == 4:
-                if update_list[0] == "BaseModel" and\
-                        storage.all().get("{}.{}".format("BaseModel",
-                                          str(update_list[1]))):
-                    obj = storage.all().get("{}.{}".format("BaseModel",
-                                            str(update_list[1])))
-                elif update_list[0] == "User" and\
-                        storage.all().get("{}.{}".format("User",
-                                          str(update_list[1]))):
-                    obj = storage.all().get("{}.{}".format("User",
-                                            str(update_list[1])))
-                elif update_list[0] == "State" and\
-                        storage.all().get("{}.{}".format("State",
-                                          str(update_list[1]))):
-                    obj = storage.all().get("{}.{}".format("State",
-                                            str(update_list[1])))
-                elif update_list[0] == "City" and\
-                        storage.all().get("{}.{}".format("City",
-                                          str(update_list[1]))):
-                    obj = storage.all().get("{}.{}".format("City",
-                                            str(update_list[1])))
-                elif update_list[0] == "Amenity" and\
-                        storage.all().get("{}.{}".format("Amenity",
-                                          str(update_list[1]))):
-                    obj = storage.all().get("{}.{}".format("Amenity",
-                                            str(update_list[1])))
-                elif update_list[0] == "Place" and\
-                        storage.all().get("{}.{}".format("Place",
-                                          str(update_list[1]))):
-                    obj = storage.all().get("{}.{}".format("Place",
-                                            str(update_list[1])))
-                elif update_list[0] == "Review" and\
-                        storage.all().get("{}.{}".format("Review",
-                                          str(update_list[1]))):
-                    obj = storage.all().get("{}.{}".format("Review",
-                                            str(update_list[1])))
+        """ Updates an instance based on the class name and id.
 
-                index = 2
-                while index < len(update_list):
-                    if update_list[index] != "id" or\
-                            update_list[index] != "created_at" or\
-                            update_list[index] != "updated_at":
-                        obj.__dict__[update_list[index]] = update_list[index+1]
-                        index += 2
-                storage.new(obj)
-                storage.save()
-            elif update_list[0] not in all_variables:
-                print("** class doesn't exit **")
-            elif len(update_list) < 2:
+        Format:
+        update <class name> <id> <attr name> "<atrr value>".
+        """
+        if args:
+            args_list = shlex.split(args)
+            if args_list[0] not in HBNBCommand.__valid_classes:
+                print("** class doesn't exist **")
+                return
+            elif len(args_list) == 1:
                 print("** instance id missing **")
-            elif not storage.all().get("{}.{}".format("BaseModel",
-                                       update_list[1])) or\
-                    not storage.all().get("{}.{}".format("User",
-                                          update_list[1])) or\
-                    not storage.all().get("{}.{}".format("State",
-                                          update_list[1])) or\
-                    not storage.all().get("{}.{}".format("City",
-                                          update_list[1])) or\
-                    not storage.all().get("{}.{}".format("Amenity",
-                                          update_list[1])) or\
-                    not storage.all().get("{}.{}".format("Place",
-                                          update_list[1])) or\
-                    not storage.all().get("{}.{}".format("Review",
-                                          update_list[1])):
+                return
+            key = f"{args_list[0]}.{args_list[1]}"
+            if key not in storage.all():
                 print("** no instance found **")
-            elif len(update_list) < 3:
+                return
+            elif len(args_list) == 2:
                 print("** attribute name missing **")
-            elif len(update_list) < 4:
+                return
+            elif len(args_list) == 3:
                 print("** value missing **")
+                return
+            elif len(args_list) == 4:
+                attr_name = args_list[2]
+                attr_value = args_list[3]
+                try:
+                    setattr(storage.all()[key], attr_name, attr_value)
+                except AttributeError:
+                    print("** attribute name missing **")
         else:
             print("** class name missing **")
 
