@@ -40,6 +40,105 @@ class HBNBCommand(cmd.Cmd):
         """ EOF command to close the program."""
         return True
 
+    def default(self, line):
+        """ Called on an input line when the command prefix is not recognized.
+
+        Returns:
+            Output if any from the executed command
+
+        """
+        arg_list = shlex.split(line)
+        class_name = (arg_list[0].split("."))[0]
+        if "." in arg_list[0] and class_name in HBNBCommand.__valid_classes:
+            method = (arg_list[0].split("."))[1].strip()
+            command = f"{method.translate({40: None, 41: None})} {class_name}"
+            if len(arg_list) == 1 and method == "all()":
+                return cmd.Cmd.onecmd(self, command)
+            elif len(arg_list) == 1 and method == "count()":
+                all_objects = storage.all()
+                print(len(all_objects.keys()))
+                return False
+            elif len(arg_list) == 1 and method.startswith("show"):
+                if len(method) > len("show()"):
+                    new_method = method.split("(")[0]
+                    id = method.split("(")[1].translate({41: None})
+                    if len(id) != 0:
+                        new_command = f"{new_method} {class_name} {id}"
+                        return cmd.Cmd.onecmd(self, new_command)
+                    else:
+                        return cmd.Cmd.default(self, line)
+                elif len(method) == len("show()"):
+                    return cmd.Cmd.onecmd(self, command)
+                else:
+                    return cmd.Cmd.default(self, line)
+            elif len(arg_list) == 1 and method.startswith("destroy"):
+                if len(method) > len("destroy()"):
+                    new_method = method.split("(")[0]
+                    id = method.split("(")[1].translate({41: None})
+                    if len(id) != 0:
+                        new_command = f"{new_method} {class_name} {id}"
+                        return cmd.Cmd.onecmd(self, new_command)
+                    else:
+                        return cmd.Cmd.default(self, line)
+                elif len(method) == len("destroy()"):
+                    return cmd.Cmd.onecmd(self, command)
+                else:
+                    return cmd.Cmd.default(self, line)
+            elif method.startswith("update"):
+                if len(method) > len("update()"):
+                    new_method = method.split("(")[0]
+                    attr_name = ""
+                    attr_value = ""
+                    id = method.split("(")[1].strip().translate({44: None})
+                    if len(arg_list) > 1 and len(arg_list) <= 3:
+                        attr_name = arg_list[1].strip().translate(
+                                {44: None, 58: None, 123: None})
+                        if len(arg_list) > 2:
+                            attr_value = arg_list[2].strip().translate(
+                                {41: None, 125: None})
+                    elif len(arg_list) > 3:
+                        index = 1
+                        while index < len(arg_list):
+                            attr_name = arg_list[index].strip().translate(
+                                {40: None, 41: None, 44: None, 58: None,
+                                    123: None, 125: None})
+                            attr_value = arg_list[index + 1].strip().translate(
+                                {40: None, 41: None, 44: None, 58: None,
+                                    123: None, 125: None})
+                            new_command = f"{new_method} {class_name} {id}\
+                                            {attr_name} {attr_value}"
+                            cmd.Cmd.onecmd(self, new_command)
+                            index += 2
+                        return
+                    if len(id) != 0 and len(attr_name) != 0 and\
+                            len(attr_value) != 0:
+                        new_command = f"{new_method} {class_name} {id}\
+                                            {attr_name} {attr_value}"
+                        return cmd.Cmd.onecmd(self, new_command)
+                    elif len(attr_name) == 0:
+                        id = method.split("(")[1].strip().translate({41: None})
+                        new_command = f"{new_method} {class_name} {id}"
+                        return cmd.Cmd.onecmd(self, new_command)
+                    elif len(attr_value) == 0:
+                        new_command = f"{new_method} {class_name} {id}\
+                                            {attr_name}"
+                        return cmd.Cmd.onecmd(self, new_command)
+                    else:
+                        return cmd.Cmd.default(self, line)
+                elif len(method) == len("update()"):
+                    return cmd.Cmd.onecmd(self, command)
+                else:
+                    return cmd.Cmd.default(self, line)
+            else:
+                try:
+                    eval(method())
+                except NameError and TypeError:
+                    return cmd.Cmd.default(self, line)
+                else:
+                    return cmd.Cmd.onecmd(self, line)
+        else:
+            return cmd.Cmd.default(self, line)
+
     def do_create(self, args):
         """ Creates a new instance of a model.
 
