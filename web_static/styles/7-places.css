@@ -1,0 +1,30 @@
+/*
+===================
+Places Section
+===================
+*/
+.places {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.places h1 {
+    justify-content: inherit;
+    align-items: left;
+    font-size: 30px;
+}
+
+.places h2 {
+    font-size: 30px;
+}
+
+.places article {
+    width: 390px;
+    margin: 20px;
+    padding: 20px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #FF5A5F;
+    border-radius: 4px;
+}
