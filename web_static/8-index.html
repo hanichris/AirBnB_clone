@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <link rel="stylesheet" type="text/css" href="styles/4-common.css">
+        <link rel="stylesheet" type="text/css" href="styles/3-header.css">
+        <link rel="stylesheet" type="text/css" href="styles/6-filters.css">
+        <link rel="stylesheet" type="text/css" href="styles/8-places.css">
+        <link rel="stylesheet" type="text/css" href="styles/3-footer.css">
+    </head>
+    <body>
+        <header>
+            <picture>
+                <source srcset="images/logo.png">
+                <object type="image/png" data="images/logo.png">
+                    Holberton Logo
+                </object>
+            </picture>
+        </header>
+        <div class="container">
+            <section class="filters">
+                <div class="locations">
+                    <h2>States</h2>
+                    <h4>To where?</h4>
+                    <ul class="popover outer">
+                        <li>Test States</li>
+                    </ul>
+                    <br>
+                    <h3>Cities</h3>
+                    <h4>To where?</h4>
+                    <ul class="popover inner">
+                        <li>Test Cities</li>
+                    </ul>
+                </div>
+                <div class="amenities">
+                    <h3>Amenities</h3>
+                    <h4>For what?</h4>
+                    <ul class="popover">
+                        <li>Test Amenities</li>
+                    </ul>
+                </div>
+                <button>
+                    <span>Search</span>
+                </button>
+            </section>
+            <section class="places">
+                <h1>Places</h1>
+                <article>
+                    <h2>Why there?</h2>
+                    <div class="price_by_night"></div>
+                    <div class="information">
+                        <div class="max_guest">
+                            <span>Bringin someone?</span>
+                            <picture>
+                                <source srcset="images/icon_guests.png">
+                                <object type="image/png"
+                                    data="images/icon_guests.png">
+                                    Guests Logo
+                                </object>
+                            </picture>
+                        </div>
+                        <div class="number_rooms">
+                            <span>Can you catch me?</span>
+                            <picture>
+                                <source srcset="images/icon_room.png">
+                                <object type="image/png"
+                                    data="images/icon_room.png">
+                                    Room Logo
+                                </object>
+                            </picture>
+                        </div>
+                        <div class="number_bathrooms">
+                            <span>Running?</span>
+                            <picture>
+                                <source srcset="images/icon_bathroom.png">
+                                <object type="image/png"
+                                    data="images/icon_bathroom.png">
+                                    Bathroom Logo
+                                </object>
+                            </picture>
+                        </div>
+                    </div>
+                    <div class="user">
+                        <span>Boss man</span>
+                    </div>
+                    <div class="description">
+                        <span>Come tomorrow i tell you more, No?</span>
+                    </div>
+                </article>
+            </section>
+        </div>
+        <footer>
+            <p>Best School</p>
+        </footer>
+    </body>
+</html>
