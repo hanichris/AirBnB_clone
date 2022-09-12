@@ -4,14 +4,15 @@ Places Section
 ===================
 */
 .places {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: inline-block;
+    text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
 .places h1 {
-    justify-content: inherit;
-    align-items: left;
+    padding: 0;
+    text-align: left;
     font-size: 30px;
 }
 
@@ -20,6 +21,8 @@ Places Section
 }
 
 .places article {
+    display: inline-block;
+    text-align: center;
     width: 390px;
     margin: 20px;
     padding: 20px;

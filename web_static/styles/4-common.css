@@ -1,25 +1,39 @@
 /*
 ===================
+HTML Reset
+===================
+*/
+html {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+/*
+===================
 Body
 ===================
 */
 body {
+    display: inline;
     margin: 0;
     padding: 0;
     color: #484848;
     font-size: 14px;
-    font-family: Circular, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Circular", "Helvetica Neue", "Helvetica", "Arial",
+                 "sans-serif";
 }
 
-body picture {
-    background-image: url(images/icon.png);
-}
-
-body .container {
-    max-width: 1000px;
-    display: flex;
+.container {
+    display: block;
     justify-content: center;
     align-items: center;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 30px;
     margin-bottom: 30px;
 }

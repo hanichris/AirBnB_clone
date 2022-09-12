@@ -4,22 +4,31 @@ Places Section
 ===================
 */
 .places {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: inline-block;
+    text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
 .places h1 {
-    justify-content: inherit;
-    align-items: left;
+    padding: 0;
+    text-align: left;
     font-size: 30px;
 }
 
 .places h2 {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     font-size: 30px;
 }
 
 .places article {
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     width: 390px;
     margin: 20px;
     padding: 20px;
@@ -31,18 +40,22 @@ Places Section
 
 .places .price_by_night {
     color: #FF5A5F;
-    border-style: solid;
-    border-width: 4px;
-    border-color: #FF5A5F;
-    border-radius: 5%;
     min-width: 60px;
     height: 60px;
     font-size: 30px;
-    display: flex;
-    align-items: right;
+    border-style: solid;
+    border-width: 4px;
+    border-color: #FF5A5F;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: right;
+    width: auto;
 }
 
 .places .information {
+    display: flex;
     height: 80px;
     border-top-width: 1px;
     border-bottom-width: 1px;
@@ -53,9 +66,20 @@ Places Section
 .places .max_guest,
 .places .number_rooms,
 .places .number_bathrooms {
+    display: grid;
+    justify-content: center;
     width: 100px;
 }
 
 .places .user {
+    display: flex;
+    justify-content: left;
+    align-items: center;
     font-style: bold;
+}
+
+.places .description {
+    display: flex;
+    justify-content: left;
+    align-items: center;
 }

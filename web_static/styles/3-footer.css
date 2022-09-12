@@ -4,7 +4,8 @@ Footer
 ===================
 */
 footer {
-    position: fixed;
+    display: block;
+    top: 100;
     bottom: 0;
     background-color: white;
     height: 60px;

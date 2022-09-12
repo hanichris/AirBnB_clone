@@ -8,9 +8,6 @@ body {
     padding: 0;
     color: #484848;
     font-size: 14px;
-    font-family: Circular, "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-body picture {
-    background-image: url(images/icon.png);
+    font-family: "Circular", "Helvetica Neue", "Helvetica", "Arial",
+                 "sans-serif";
 }
