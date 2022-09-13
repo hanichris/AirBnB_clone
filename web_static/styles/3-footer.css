@@ -5,7 +5,7 @@ Footer
 */
 footer {
     display: block;
-    top: 100;
+    position: fixed;
     bottom: 0;
     background-color: white;
     height: 60px;

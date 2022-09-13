@@ -13,7 +13,7 @@ header {
     border-bottom-color: #CCCCCC;
 }
 
-header picture {
+header object {
     display: inline-block;
     padding-left: 20px;
 }
