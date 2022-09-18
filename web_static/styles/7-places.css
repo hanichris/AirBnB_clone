@@ -4,15 +4,13 @@ Places Section
 ===================
 */
 .places {
-    display: inline-block;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
     margin: 0;
     padding: 0;
 }
 
 .places h1 {
-    padding: 0;
-    text-align: left;
     font-size: 30px;
 }
 
@@ -20,14 +18,18 @@ Places Section
     font-size: 30px;
 }
 
+.places div {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .places article {
-    display: inline-block;
-    text-align: center;
     width: 390px;
     margin: 20px;
     padding: 20px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #FF5A5F;
+    border: 1px solid #FF5A5F;
     border-radius: 4px;
+    text-align: center;
 }
