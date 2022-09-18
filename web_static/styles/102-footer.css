@@ -1,0 +1,45 @@
+/*
+===================
+Small screen size devices
+===================
+*/
+@media only screen and (min-width: 600px) {
+
+}
+
+/*
+===================
+Medium screen size devices
+===================
+*/
+@media only screen and (min-width: 768px) {
+
+}
+
+/*
+===================
+Large screen size devices
+===================
+*/
+@media only screen and (min-width: 992px) {
+
+}
+
+/*
+===================
+Footer
+===================
+*/
+footer {
+    position: fixed;
+    bottom: 0;
+    background-color: white;
+    height: 60px;
+    width: 100%;
+    border-top: 1px solid #CCCCCC;
+}
+footer p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
